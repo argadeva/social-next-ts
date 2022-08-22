@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url("../fonts/Montserrat/Montserrat-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url("../fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url("../fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+* {
+  animation: fade-in 0.5s ease-in-out;
+  transition: background-color 2s;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+body[class*="dark"] {
+  color: #ffffff;
+  background-color: #111827;
+}
+
+.hamburger-line {
+  @apply w-[30px] h-[2px] my-2 block bg-black dark:bg-white;
+}
+
+.hamburger-active > span:nth-child(1) {
+  @apply rotate-45
+}
+
+.hamburger-active > span:nth-child(2) {
+  @apply scale-0
+}
+
+.hamburger-active > span:nth-child(3) {
+  @apply -rotate-45
+}
+
+.navbar-fixed {
+  @apply fixed z-[9999] bg-white dark:bg-black dark:bg-opacity-40 bg-opacity-80;
+  backdrop-filter: blur(5px);
+  box-shadow: inset 0 -1px 0 0 rgba(0,0,0,0.2);
+}
