@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useQuery, gql } from '@apollo/client';
+import ErrorPage from 'next/error';
 import Image from 'next/image';
 import Meta from '@/components/layouts/Meta';
 import ClientOnly from '@/components/layouts/ClientOnly';
@@ -24,6 +25,10 @@ function Article() {
   const { data, loading, error } = useQuery(QUERY, {
     variables: { postId: id },
   });
+
+  if (!router.isFallback && !data && !id) {
+    return <ErrorPage statusCode={404} />
+  }
 
   if (!loading) {
     return (
