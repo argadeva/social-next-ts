@@ -1,10 +1,10 @@
+import React, { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
 import { gql } from '@apollo/client';
 import Image from 'next/image';
 import Link from 'next/link';
 import Meta from '@/components/layouts/Meta';
 import client from '@/utils/apollo-client';
-import React, { useContext, useState, useEffect } from 'react';
 
 export async function getServerSideProps() {
   const { data } = await client.query({
