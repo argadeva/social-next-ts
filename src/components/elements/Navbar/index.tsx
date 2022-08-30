@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ThemeContext } from '../../../contexts';
+import { ThemeContext } from '@/contexts';
 
 const Navbar = () => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
@@ -34,16 +34,16 @@ const Navbar = () => {
 
   const navData = [
     { link: '/', title: 'Home' },
-    { link: '#blog', title: 'Blog' },
+    { link: `${process.env.baseURI}#blog`, title: 'Blog' },
     { link: 'https://github.com/argadeva', title: 'Portofolio' },
-    { link: '#contact', title: 'Contact' },
+    { link: `${process.env.baseURI}#contact`, title: 'Contact' },
   ];
 
   const NavMap = () => {
     return navData.map((nav, idx) => (
       <li className="group" key={idx}>
         <Link href={nav.link}>
-          <a className="mx-8 flex py-2 text-base text-black group-hover:text-yellow-300 dark:text-white">
+          <a className="mx-8 flex py-2 text-base font-semibold text-black group-hover:text-yellow-500 dark:text-white">
             {nav.title}
           </a>
         </Link>
@@ -87,7 +87,9 @@ const Navbar = () => {
                 </svg>
               )}
             </button>
-            <a className="text-lg font-bold">About Me</a>
+            <Link href="/">
+              <a className="text-lg font-bold">About Me</a>
+            </Link>
           </div>
 
           <div className="flex items-center px-4">
@@ -101,17 +103,7 @@ const Navbar = () => {
             </button>
 
             <nav className={classMenu}>
-              <ul className="block lg:flex">
-                {NavMap()}
-                {/* <li className="block lg:flex">
-                  <button
-                    type="button"
-                    className="mx-8 mt-4 flex rounded border border-gray-200 py-2 px-4 text-base text-black hover:bg-yellow-300 group-hover:text-yellow-300 dark:text-white lg:mt-0"
-                  >
-                    Sign In / Sign Up
-                  </button>
-                </li> */}
-              </ul>
+              <ul className="block lg:flex">{NavMap()}</ul>
             </nav>
           </div>
         </div>

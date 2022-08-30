@@ -1,36 +1,76 @@
 import type { NextPage } from 'next';
+import { gql } from '@apollo/client';
 import Image from 'next/image';
 import Link from 'next/link';
+import Meta from '@/components/layouts/Meta';
+import client from '@/utils/apollo-client';
+import React, { useContext, useState, useEffect } from 'react';
 
-const Home: NextPage = () => {
+export async function getServerSideProps() {
+  const { data } = await client.query({
+    query: gql`
+      query Posts {
+        getPosts(limit: 3) {
+          id
+          title
+          shortBody
+          image
+          createdAt
+        }
+      }
+    `,
+  });
+
+  return {
+    props: {
+      posts: data?.getPosts,
+    },
+  };
+}
+
+const Home: NextPage = ({ posts }: { posts?: Array<object> }) => {
+  const [count, setCount] = useState(0);
+  const skill = [
+    'Frontend Developer',
+    'Mobile Developer',
+    'Full-Stack Developer',
+  ];
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCount((oldCount) => (oldCount < 2 ? oldCount + 1 : 0));
+    }, 6000);
+    return () => {
+      clearInterval(id);
+    };
+  }, [count]);
+
   const blogMap = () => {
-    return [1, 2, 3].map((i) => {
+    return posts?.map((i: any, idx: number) => {
       return (
-        <div className="w-full p-4 lg:w-1/2 xl:w-1/3" key={i}>
+        <div className="w-full p-4 lg:w-1/2 xl:w-1/3" key={idx}>
           <div className="overflow-hidden rounded-xl bg-white shadow-lg dark:bg-gray-900">
             <div className="w-min-full relative aspect-video">
               <Image
-                src="http://source.unsplash.com/360x200"
-                alt="Picture of the author"
+                src={i.image}
+                alt={i.title}
                 layout="fill"
                 objectFit="cover"
                 objectPosition="center"
+                priority={true}
               />
             </div>
             <div className="p-4">
-              <h3 className="truncate text-lg font-bold">Title Lorem Test</h3>
+              <h3 className="mb-2 truncate text-lg font-bold">{i.title}</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil
-                delectus aperiam fugiat maxime. Quibusdam, aperiam. Aliquid quod
-                iure animi quaerat quae qui id maxime asperiores mollitia, eaque
-                harum vero molestiae?
-              </p>
+                {i.shortBody}
 
-              <Link href={`/blog/${i}`}>
-                <a className="mt-5 inline-block rounded-lg bg-yellow-500 py-3 px-8 font-semibold text-white hover:shadow-lg">
-                  Read More
-                </a>
-              </Link>
+                <Link href={`/blog/${i.id}`}>
+                  <a className="mt-5 block max-w-max rounded-lg bg-yellow-500 py-3 px-8 font-semibold text-white hover:shadow-lg">
+                    Read More
+                  </a>
+                </Link>
+              </p>
             </div>
           </div>
         </div>
@@ -40,22 +80,25 @@ const Home: NextPage = () => {
 
   const socialMap = () => {
     const dataSocial = [
-      { name: 'linkedin', url: 'https://www.linkedin.com/in/linkedin' },
-      { name: 'github', url: 'https://www.linkedin.com/in/linkedin' },
-      { name: 'instagram', url: 'https://www.linkedin.com/in/linkedin' },
+      { name: 'linkedin', url: 'https://www.linkedin.com/in/argadeva' },
+      { name: 'github', url: 'https://github.com/argadeva' },
+      { name: 'instagram', url: 'https://www.instagram.com/argadeva_' },
     ];
     return dataSocial.map((i, idx) => {
       return (
-        <li key={idx} className="relative aspect-square h-8 hover:animate-bounce">
-          <Link href={i.url} target="_blank" rel="noopener noreferrer">
-            <a className="w-full">
+        <li key={idx} className="aspect-square h-8 w-8 hover:animate-bounce">
+          <Link href={i.url}>
+            <a
+              className="relative block h-8 w-8"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
+                className="dark:invert"
                 src={`/assets/icons/${i.name}.svg`}
                 alt={i.name}
-                layout="fill"
-                objectFit="contain"
-                objectPosition="center"
-                className="dark:invert"
+                height={300}
+                width={300}
               />
             </a>
           </Link>
@@ -66,6 +109,10 @@ const Home: NextPage = () => {
 
   return (
     <div>
+      <Meta
+        title="About Alam Raga Deva"
+        description="Alam Raga Deva a Full Stack Developer who has experience in developing Web or Mobile Applications."
+      />
       <section className="py-20">
         <div className="container">
           <div className="flex flex-wrap">
@@ -77,6 +124,7 @@ const Home: NextPage = () => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="top"
+                  priority={true}
                 />
               </div>
             </div>
@@ -85,7 +133,9 @@ const Home: NextPage = () => {
               <h1 className="my-2 text-center text-4xl font-bold lg:text-left">
                 Alam Raga Deva
               </h1>
-              <h2 className="mb-5 text-xl font-medium">Fullstack Developer</h2>
+              <div className="typewriter">
+                <h2 className="mb-5 text-xl font-medium">{skill[count]}</h2>
+              </div>
               <p className="mb-10 text-center leading-relaxed lg:text-left">
                 a Full Stack Developer who has experience in developing Web or
                 Mobile Applications, likes challenges and is able to work in

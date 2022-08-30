@@ -9,13 +9,17 @@ const nextConfig = {
     ]
   },
   env: {
-    customKey: 'my-value',
+    baseURI: 'https://argadeva.herokuapp.com/',
+    graphqlURI: 'https://social-graphql-backend.herokuapp.com/graphql',
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: ['source.unsplash.com'],
+    domains: ['source.unsplash.com', 'images.unsplash.com'],
   },
+  basePath: '',
+  poweredByHeader: false,
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;
