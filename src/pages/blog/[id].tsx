@@ -30,7 +30,7 @@ function Article() {
     return <ErrorPage statusCode={404} />
   }
 
-  if (!loading) {
+  if (loading) {
     return (
       <section className="flex items-center justify-center py-80">
         <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-yellow-600"></div>
@@ -42,7 +42,7 @@ function Article() {
     return null;
   }
 
-  const { body, image, title } = data?.getPost;
+  const { body="", image="", title="" } = data?.getPost;
 
   return (
     <section className="pt-20">
