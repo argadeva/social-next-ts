@@ -31,15 +31,15 @@ export async function getServerSideProps() {
 const Home: NextPage = ({ posts }: { posts?: Array<object> }) => {
   const [count, setCount] = useState(0);
   const skill = [
-    'Frontend Developer',
-    'Mobile Developer',
-    'Full-Stack Developer',
+    '<h2>Frontend Developer </h2>',
+    '<h2>Mobile Developer </h2>',
+    '<h2>Full-Stack Developer </h2>',
   ];
 
   useEffect(() => {
     const id = setInterval(() => {
       setCount((oldCount) => (oldCount < 2 ? oldCount + 1 : 0));
-    }, 6000);
+    }, 8000);
     return () => {
       clearInterval(id);
     };
@@ -133,9 +133,7 @@ const Home: NextPage = ({ posts }: { posts?: Array<object> }) => {
               <h1 className="my-2 text-center text-4xl font-bold lg:text-left">
                 Alam Raga Deva
               </h1>
-              <div className="typewriter">
-                <h2 className="mb-5 text-xl font-medium">{skill[count]}</h2>
-              </div>
+              <div className="typewriter" dangerouslySetInnerHTML={{__html: skill[count]}} />
               <p className="mb-10 text-center leading-relaxed lg:text-left">
                 a Full Stack Developer who has experience in developing Web or
                 Mobile Applications, likes challenges and is able to work in
