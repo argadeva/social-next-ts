@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://argadeva.herokuapp.com
+
+# Sitemaps
+Sitemap: https://argadeva.herokuapp.com/sitemap.xml
