@@ -11,6 +11,7 @@ const nextConfig = {
   env: {
     baseURI: 'https://argadeva.herokuapp.com/',
     graphqlURI: 'https://social-graphql-backend.herokuapp.com/graphql',
+    publicGAID: 'G-MNDSH02DP2'
   },
   reactStrictMode: false,
   swcMinify: true,
