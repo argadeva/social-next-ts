@@ -34,36 +34,36 @@ export const getServerSideProps : GetServerSideProps = async ({ res }) => {
   
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-      <url>
+    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <sitemap>
         <loc>${process.env.baseURI}</loc>
         <lastmod>2022-09-06T06:31:19.243Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
-      </url>
+      </sitemap>
       ${staticPages
         .map((url) => {
           return `
-            <url>
+            <sitemap>
               <loc>${url}</loc>
               <lastmod>${new Date().toISOString()}</lastmod>
               <changefreq>monthly</changefreq>
               <priority>1.0</priority>
-            </url>
+            </sitemap>
           `;
         })
         .join("")}
         ${data?.getPosts.map((i: { id: string }) => {
           return `
-            <url>
+            <sitemap>
               <loc>${[process.env.baseURI,"blog/",i.id].join("")}</loc>
               <lastmod>${new Date().toISOString()}</lastmod>
               <changefreq>monthly</changefreq>
               <priority>1.0</priority>
-            </url>
+            </sitemap>
           `;
         }) .join("")}
-    </urlset>
+    </sitemapindex>
   `;
 
   res.setHeader("Content-Type", "text/xml");
