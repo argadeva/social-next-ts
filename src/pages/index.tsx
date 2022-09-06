@@ -4,9 +4,10 @@ import { gql } from '@apollo/client';
 import Image from 'next/image';
 import Link from 'next/link';
 import Meta from '@/components/layouts/Meta';
-import client from '@/utils/apollo-client';
+import apolloClient from '@/utils/apollo-client';
 
 export async function getServerSideProps() {
+  const client = apolloClient();
   const { data } = await client.query({
     query: gql`
       query Posts {

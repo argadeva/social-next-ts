@@ -4,10 +4,11 @@ import { ApolloProvider } from '@apollo/client';
 import ContextProvider from '@/contexts';
 import Footer from '@/components/elements/Footer';
 import Navbar from '@/components/elements/Navbar';
-import client from '@/utils/apollo-client';
+import apolloClient from '@/utils/apollo-client';
 import '@/public/assets/css/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const client = apolloClient();
   return (
     <ContextProvider>
       <ApolloProvider client={client}>
