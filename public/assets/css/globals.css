@@ -75,6 +75,10 @@ body[class*="dark"] {
   width: 110%;
 }
 
+.article h2, .article hr {
+  @apply my-4;
+}
+
 @keyframes typing {
   from { width: 0 }
   to { width: 110% }

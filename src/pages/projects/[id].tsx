@@ -45,10 +45,10 @@ function Project() {
   const { body="", image="", title="" } = data?.getPost;
 
   return (
-    <section className="pt-20">
+    <section className="pt-20 article">
       <Meta
-        title="Blog Alam Raga Deva"
-        description="Alam Raga Deva Blog For Developer"
+        title="Projects Alam Raga Deva"
+        description="Alam Raga Deva Projects"
       />
       <ClientOnly>
         <div className="relative h-96 w-full">
