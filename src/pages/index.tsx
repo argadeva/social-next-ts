@@ -46,7 +46,7 @@ const Home: NextPage = ({ posts }: { posts?: Array<object> }) => {
     };
   }, [count]);
 
-  const blogMap = () => {
+  const projectsMap = () => {
     return posts?.map((i: any, idx: number) => {
       return (
         <div className="w-full p-4 lg:w-1/2 xl:w-1/3" key={idx}>
@@ -66,7 +66,7 @@ const Home: NextPage = ({ posts }: { posts?: Array<object> }) => {
               <p>
                 {i.shortBody}
 
-                <Link href={`/blog/${i.id}`}>
+                <Link href={`/projects/${i.id}`}>
                   <a className="mt-5 block max-w-max rounded-lg bg-yellow-500 py-3 px-8 font-semibold text-white hover:shadow-lg">
                     Read More
                   </a>
@@ -152,15 +152,15 @@ const Home: NextPage = ({ posts }: { posts?: Array<object> }) => {
           </div>
         </div>
       </section>
-      <section id="blog" className="bg-yellow-500 py-20">
+      <section id="projects" className="bg-yellow-500 py-20">
         <div className="container">
           <h4 className="mb-2 text-center text-lg font-semibold text-white dark:text-black">
-            Blog
+            Projects
           </h4>
           <h2 className="text-dark mb-8 text-center text-2xl font-bold">
-            Latest Articles
+            Latest Works
           </h2>
-          <div className="flex flex-wrap">{blogMap()}</div>
+          <div className="flex flex-wrap">{projectsMap()}</div>
         </div>
       </section>
       <section id="contact" className="py-20">

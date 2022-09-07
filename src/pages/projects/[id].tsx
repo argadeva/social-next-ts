@@ -18,7 +18,7 @@ const QUERY = gql`
   }
 `;
 
-function Article() {
+function Project() {
   const router = useRouter();
   const { id } = router.query;
 
@@ -75,4 +75,4 @@ function Article() {
   );
 }
 
-export default Article;
+export default Project;
