@@ -16,7 +16,7 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: ['source.unsplash.com', 'images.unsplash.com'],
+    domains: ['gcdnb.pbrd.co'],
   },
   basePath: '',
   poweredByHeader: false,

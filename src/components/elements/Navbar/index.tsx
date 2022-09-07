@@ -34,7 +34,7 @@ const Navbar = () => {
 
   const navData = [
     { link: '/', title: 'Home' },
-    { link: `${process.env.baseURI}#blog`, title: 'Blog' },
+    { link: `${process.env.baseURI}#projects`, title: 'Blog' },
     { link: 'https://github.com/argadeva', title: 'Portofolio' },
     { link: `${process.env.baseURI}#contact`, title: 'Contact' },
   ];
