@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const currentEnv = process.env.NODE_ENV as Environment;
   if (currentEnv === 'production' && request.nextUrl.pathname.startsWith('/') && request.nextUrl.protocol !== 'https:') {
     return NextResponse.redirect(
-      `https://${request.nextUrl.host}`, 301
+      `https://argadeva.herokuapp.com`, 301
     );
   }
 }
