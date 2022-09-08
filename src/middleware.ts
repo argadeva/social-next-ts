@@ -4,7 +4,7 @@ type Environment = "production" | "development" | "other";
 
 export function middleware(request: NextRequest) {
   const currentEnv = process.env.NODE_ENV as Environment;
-  if (currentEnv === 'production' && request.nextUrl.pathname.startsWith('/about') && request.nextUrl.protocol !== 'https:') {
-    return window.location.replace("https://www.argadeva.herokuapp.com");
+  if (currentEnv === 'production' && request.nextUrl.pathname.startsWith('/') && request.nextUrl.protocol !== 'https:') {
+    return NextResponse.redirect(new URL('https://argadeva.herokuapp.com'));
   }
 }
