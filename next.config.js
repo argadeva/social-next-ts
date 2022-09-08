@@ -2,18 +2,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/',
-        has: [
-          {
-            type: 'header',
-            key: 'x-authorized',
-            value: '(?<authorized>yes|true)',
-          },
-        ],
-        destination: '/',
-        permanent: true,
-      },
-      {
         source: '/index',
         destination: '/',
         permanent: true,
