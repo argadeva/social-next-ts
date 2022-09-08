@@ -2,6 +2,18 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/',
+        has: [
+          {
+            type: 'header',
+            key: 'x-authorized',
+            value: '(?<authorized>yes|true)',
+          },
+        ],
+        destination: '/',
+        permanent: true,
+      },
+      {
         source: '/index',
         destination: '/',
         permanent: true,
@@ -20,7 +32,7 @@ const nextConfig = {
   },
   basePath: '',
   poweredByHeader: false,
-  trailingSlash: true,
+  trailingSlash: false,
 };
 
 module.exports = nextConfig;
